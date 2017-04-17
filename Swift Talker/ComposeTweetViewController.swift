@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol ComposeTweetViewControllerDelegate {
-    @objc optional func ComposeTweetViewController( ComposeTweetViewController : ComposeTweetViewController, didTweet tweet: Tweet)
+    @objc optional func composeTweetViewController( composeTweetViewController : ComposeTweetViewController, didTweet tweet: Tweet)
 }
 
 class ComposeTweetViewController: UIViewController {
@@ -21,12 +21,14 @@ class ComposeTweetViewController: UIViewController {
     @IBOutlet weak var tweetText: UITextView!
     @IBOutlet weak var onCancel: UIBarButtonItem!
     @IBOutlet weak var tweetBarButton: UIBarButtonItem!
+    @IBOutlet weak var characterRemainingLabel: UIBarButtonItem!
     
     weak var delegate: ComposeTweetViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tweetText.delegate = self
         tweetText.becomeFirstResponder()
         
         let currentUser = User.currentUser
@@ -35,13 +37,13 @@ class ComposeTweetViewController: UIViewController {
         userNameLabel.text = currentUser?.name
         let fullScreenName = "@" + (currentUser?.screenName)!
         userScreenNameLabel.text = fullScreenName
-
-        // Do any additional setup after loading the view.
+        
+        characterRemainingLabel.title = "140"
+        tweetBarButton.isEnabled = false
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onTweet(_ sender: Any) {
@@ -55,7 +57,7 @@ class ComposeTweetViewController: UIViewController {
                 
                 print("New Tweet: \(tweet)")
                 //Let view know about the new tweet
-                self.delegate?.ComposeTweetViewController!(ComposeTweetViewController: self, didTweet: tweet)
+                self.delegate?.composeTweetViewController!(composeTweetViewController: self, didTweet: tweet)
                 
                 //Now cleanup
                 self.tweetText.text = ""
@@ -69,4 +71,35 @@ class ComposeTweetViewController: UIViewController {
     @IBAction func onCancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+}
+
+//Again separating the delegate
+extension ComposeTweetViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if tweetText.text.characters.count > 0 {
+            tweetBarButton.isEnabled = true
+        }
+        else {
+            tweetBarButton.isEnabled = false
+        }
+        
+        calculateCharacterLimit()
+    }
+    
+    func calculateCharacterLimit() {
+        let tweetLimit = 140
+        let count = tweetText.text!.characters.count
+        let remainingCharacters =  tweetLimit - count
+        
+        if remainingCharacters >= 0 {
+            characterRemainingLabel.title = String(remainingCharacters)
+            //characterRemainingLabel.tintColor = UIColor.green
+        }
+        else {
+            characterRemainingLabel.title = "0"
+            characterRemainingLabel.tintColor = UIColor.red
+        }
+        
+    }
+    
 }

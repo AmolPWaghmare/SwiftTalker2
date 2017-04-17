@@ -28,21 +28,16 @@ class TweetCell: UITableViewCell {
             userName.text = tweetBy?.name
             
             tweetText.text = tweet.text
-            timeText.text = "4h"
+            timeText.text = tweet.timestampStr
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
         userImage.layer.cornerRadius = 3
         userImage.clipsToBounds = true
         
-        //userScreenName.isHidden = true
-        
         tweetText.preferredMaxLayoutWidth = tweetText.frame.size.width
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

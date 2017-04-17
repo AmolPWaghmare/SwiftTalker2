@@ -8,15 +8,13 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeTweetViewControllerDelegate{
+class TweetsViewController: UIViewController{
     
     var tweets: [Tweet] = []
-    
-    
-    @IBOutlet weak var tableView: UITableView!
-    
     let refreshTweetsControl = UIRefreshControl()
     
+    @IBOutlet weak var tableView: UITableView!
+
     @IBAction func onLogout(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
     }
@@ -26,9 +24,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 240
         
         getTweets(getMore: false)
         
+        //Refresh Control
         refreshTweetsControl.addTarget(self, action: #selector(TweetsViewController.getMoreTweets), for: .valueChanged)
         tableView.insertSubview(refreshTweetsControl, at: 0)
     }
@@ -48,9 +49,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 self.tweets += tweets
                 
                 print("Tweet Count: \(tweets.count )")
-                for tweet in tweets {
-                    print("Tweet : \(tweet.text ?? "")")
-                }
+//                for tweet in tweets {
+//                    print("Tweet : \(tweet.text ?? "")")
+//                }
                 
                 self.tableView.reloadData()
                 self.refreshTweetsControl.endRefreshing()
@@ -66,6 +67,28 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let uiNavigationController = segue.destination as! UINavigationController
+
+        if segue.identifier == "showDetailsSegue" {
+            let selectedCell = sender as! TweetCell
+            let selectedIndex = tableView.indexPath(for: selectedCell)
+            let selectedTweet = tweets[(selectedIndex?.row)!]
+            
+            let tweetDetailsViewController = uiNavigationController.topViewController as! TweetDetailsViewController
+            tweetDetailsViewController.tweet = selectedTweet
+        }
+        else if segue.identifier == "ComposeTweetSegue" {
+            let composeTweetController = uiNavigationController.topViewController as! ComposeTweetViewController
+            composeTweetController.delegate = self
+        }
+        
+    }
+}
+
+//Extension for Table View functions
+extension TweetsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
@@ -76,26 +99,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.tweet = tweets[indexPath.row]
         return cell
     }
-    
-    func ComposeTweetViewController(ComposeTweetViewController: ComposeTweetViewController, didTweet tweet: Tweet) {
+}
+
+
+//Extension for Tweet View functions
+extension TweetsViewController: ComposeTweetViewControllerDelegate {
+    func composeTweetViewController(composeTweetViewController: ComposeTweetViewController, didTweet tweet: Tweet) {
         tweets.insert(tweet, at: 0)
         tableView.reloadData()
     }
-    
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailsSegue" {
-            let selectedCell = sender as! TweetCell
-            let selectedIndex = tableView.indexPath(for: selectedCell)
-            let selectedTweet = tweets[(selectedIndex?.row)!]
-            
-            let uiNavigationController = segue.destination as! UINavigationController
-            let tweetDetailsViewController = uiNavigationController.topViewController as! TweetDetailsViewController
-            tweetDetailsViewController.tweet = selectedTweet
-            
-        }
-        
-    }
-   
-
 }
