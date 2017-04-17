@@ -9,9 +9,22 @@
 import UIKit
 import BDBOAuth1Manager
 
+let twitterBaseUrl = "https://api.twitter.com"
+let twitterConsumerKey = "GpN5HiZsdOpfM7fA0fsPXm9zy"
+let twitterConsumerSecret = "dA5AxyPVQPkskaq2lZgx802Fw24MAeeYBmPDKo8EV5OmmO14hY"
+let twitterCallbackURL = "swifttalker://oauth"
+
+//API
+let TWITTER_REQUEST_TOKEN = "oauth/request_token"
+let TWITTER_ACCESS_TOKEN = "oauth/access_token"
+let TWITTER_AUTHORIZE = "https://api.twitter.com/oauth/authorize?oauth_token="
+let TWITTER_USER_INFO = "1.1/account/verify_credentials.json"
+let TWITTER_HOME_TIMELINE = "1.1/statuses/home_timeline.json"
+
+
 class TwitterClient: BDBOAuth1SessionManager {
     
-    static let sharedInstance = TwitterClient(baseURL: URL(string : "https://api.twitter.com")!, consumerKey: "GpN5HiZsdOpfM7fA0fsPXm9zy", consumerSecret: "dA5AxyPVQPkskaq2lZgx802Fw24MAeeYBmPDKo8EV5OmmO14hY")
+    static let sharedInstance = TwitterClient(baseURL: URL(string : twitterBaseUrl)!, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
     
     var loginSuccess : (() -> ())?
     var loginFailure : ((Error) -> ())?
@@ -22,11 +35,11 @@ class TwitterClient: BDBOAuth1SessionManager {
         
         deauthorize()
         
-        fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "swifttalker://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) in
+        fetchRequestToken(withPath: TWITTER_REQUEST_TOKEN, method: "GET", callbackURL: URL(string: twitterCallbackURL), scope: nil, success: { (requestToken: BDBOAuth1Credential!) in
             
             let token = String(requestToken!.token)
             
-            let authURL = URL(string:"https://api.twitter.com/oauth/authorize?oauth_token=" + token!)!
+            let authURL = URL(string: TWITTER_AUTHORIZE + token!)!
             UIApplication.shared.open(authURL, options: [:], completionHandler: { (opened: Bool) in
                 
             })
@@ -36,23 +49,26 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func logout() {
+        User.currentUser = nil
+        deauthorize()
+        NotificationCenter.default.post(name: .userDidLogoutNotificationName, object: nil)
+    }
+    
     func handleOpenURL(url : URL) {
         
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         
-        fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken:BDBOAuth1Credential!) in
+        fetchAccessToken(withPath: TWITTER_ACCESS_TOKEN, method: "POST", requestToken: requestToken, success: { (accessToken:BDBOAuth1Credential!) in
             
-            self.loginSuccess?()
-            
-//            twitterClient?.getUserInfo(success: { (user: User) in
-//                print("User info : \(user.name ?? "")")
-//                
-//            }, failure: { (error: Error) in
-//                print("error \(error.localizedDescription)")
-//            })
-//            
-
-            
+            self.getUserInfo(success: { (user : User) in
+                
+                User.currentUser = user
+                
+                self.loginSuccess?()
+            }, failure: { (error: Error!) in
+                self.loginFailure?(error)
+            })
             
         }, failure: { (error:Error!) in
             self.loginFailure?(error)
@@ -61,7 +77,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func getUserInfo (success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         
-        get("1.1/account/verify_credentials.json", parameters: nil, progress: nil,
+        get(TWITTER_USER_INFO, parameters: nil, progress: nil,
              success: { (task: URLSessionDataTask, response: Any?) in
             
                 let userDict = response as! NSDictionary
@@ -76,7 +92,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func getHomeTimeline (success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
     
-        get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil,
+        get(TWITTER_HOME_TIMELINE, parameters: nil, progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetsDict = response as! [NSDictionary]
                 let tweets = Tweet.tweetsFromArray(dictionaries: tweetsDict)

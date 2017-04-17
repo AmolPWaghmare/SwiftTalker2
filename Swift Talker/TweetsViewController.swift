@@ -12,6 +12,9 @@ class TweetsViewController: UIViewController {
     
     var tweets: [Tweet]!
 
+    @IBAction func onLogout(_ sender: Any) {
+        TwitterClient.sharedInstance?.logout()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

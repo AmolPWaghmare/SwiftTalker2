@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swift Talker/User.swift"
-            timestampString = "514014295.616183"
+            timestampString = "514077223.702892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "init(dictionary:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swift Talker/User.swift"
-            timestampString = "514014681.619012"
+            timestampString = "514077223.702892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "init(dictionary:)"
             landmarkType = "7">
             <Locations>

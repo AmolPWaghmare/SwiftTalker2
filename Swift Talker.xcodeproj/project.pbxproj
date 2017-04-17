@@ -17,6 +17,7 @@
 		46E8E6BC1EA33B4000150F81 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E8E6BB1EA33B4000150F81 /* Tweet.swift */; };
 		46E8E6BE1EA344B200150F81 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E8E6BD1EA344B200150F81 /* TwitterClient.swift */; };
 		46E8E6C01EA3677900150F81 /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E8E6BF1EA3677900150F81 /* TweetsViewController.swift */; };
+		46E8E6C31EA43FBF00150F81 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E8E6C21EA43FBE00150F81 /* NotificationExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		46E8E6BB1EA33B4000150F81 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		46E8E6BD1EA344B200150F81 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		46E8E6BF1EA3677900150F81 /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
+		46E8E6C21EA43FBE00150F81 /* NotificationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		60AD6723EB9407E2CB463948 /* Pods_Swift_Talker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_Talker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF2C7A8ADF8113E2DFC7EDC /* Pods-Swift Talker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift Talker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift Talker/Pods-Swift Talker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 		46E8E6A11EA1FAC600150F81 /* Swift Talker */ = {
 			isa = PBXGroup;
 			children = (
+				46E8E6C11EA43F8D00150F81 /* Common */,
 				46E8E6B81EA33AFA00150F81 /* API */,
 				46E8E6B71EA33AE900150F81 /* Models */,
 				46E8E6B41EA1FD3100150F81 /* View Controller */,
@@ -114,6 +117,14 @@
 				46E8E6BD1EA344B200150F81 /* TwitterClient.swift */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		46E8E6C11EA43F8D00150F81 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				46E8E6C21EA43FBE00150F81 /* NotificationExtension.swift */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		901643A3B9FB6D99A2D76CFC /* Frameworks */ = {
@@ -253,6 +264,7 @@
 				46E8E6B61EA1FD9B00150F81 /* LoginViewController.swift in Sources */,
 				46E8E6C01EA3677900150F81 /* TweetsViewController.swift in Sources */,
 				46E8E6BE1EA344B200150F81 /* TwitterClient.swift in Sources */,
+				46E8E6C31EA43FBF00150F81 /* NotificationExtension.swift in Sources */,
 				46E8E6A31EA1FAC600150F81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
