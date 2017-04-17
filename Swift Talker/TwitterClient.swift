@@ -20,6 +20,7 @@ let TWITTER_ACCESS_TOKEN = "oauth/access_token"
 let TWITTER_AUTHORIZE = "https://api.twitter.com/oauth/authorize?oauth_token="
 let TWITTER_USER_INFO = "1.1/account/verify_credentials.json"
 let TWITTER_HOME_TIMELINE = "1.1/statuses/home_timeline.json"
+let TWITTER_TWEET = "1.1/statuses/update.json"
 
 
 class TwitterClient: BDBOAuth1SessionManager {
@@ -90,9 +91,9 @@ class TwitterClient: BDBOAuth1SessionManager {
 
     }
     
-    func getHomeTimeline (success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+    func getHomeTimeline (parameters: [String: AnyObject]?, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
     
-        get(TWITTER_HOME_TIMELINE, parameters: nil, progress: nil,
+        get(TWITTER_HOME_TIMELINE, parameters: parameters, progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetsDict = response as! [NSDictionary]
                 let tweets = Tweet.tweetsFromArray(dictionaries: tweetsDict)
@@ -101,7 +102,22 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             }, failure: { (task: URLSessionDataTask?, error: Error) in
                 failure(error)
-        })
+            }
+        )
+    }
+    
+    func tweet (tweetText: String, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+        let queryParameters = ["status" : tweetText]
+        
+        post(TWITTER_TWEET, parameters: queryParameters, progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) in
+                let tweet = Tweet.init(dictionary: response as! NSDictionary)
+                success(tweet)
+        
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                failure(error)
+            }
+        )
     }
 
 }

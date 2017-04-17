@@ -10,10 +10,10 @@ import UIKit
 
 class User: NSObject {
     
-    var name: NSString?
-    var screenName: NSString?
-    var profileURL: NSURL?
-    var tagLine: NSString?
+    var name: String?
+    var screenName: String?
+    var profileURL: URL?
+    var tagLine: String?
     
     var originalDictionary : NSDictionary?
     
@@ -21,13 +21,13 @@ class User: NSObject {
         
         originalDictionary = dictionary
         
-        name = dictionary["name"] as? NSString
-        screenName = dictionary["screen_name"] as? NSString
+        name = dictionary["name"] as? String
+        screenName = dictionary["screen_name"] as? String
         let profileURLString = dictionary["profile_image_url_https"] as? String
         if let profileURLString = profileURLString {
-            profileURL = NSURL(string: profileURLString)
+            profileURL = URL(string: profileURLString)
         }
-        tagLine = dictionary["description"] as? NSString
+        tagLine = dictionary["description"] as? String
     }
     
     static var _currentUser : User?
