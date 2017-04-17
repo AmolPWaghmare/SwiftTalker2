@@ -39,7 +39,7 @@ class TweetCell: UITableViewCell {
         userImage.layer.cornerRadius = 3
         userImage.clipsToBounds = true
         
-        userScreenName.isHidden = true
+        //userScreenName.isHidden = true
         
         tweetText.preferredMaxLayoutWidth = tweetText.frame.size.width
         
