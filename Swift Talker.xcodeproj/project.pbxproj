@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		449404A5A48C24E94DB9B9A2 /* Pods_Swift_Talker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AD6723EB9407E2CB463948 /* Pods_Swift_Talker.framework */; };
 		46BEC5E21EA480EC00B6C74A /* TweetDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BEC5E11EA480EC00B6C74A /* TweetDetailsViewController.swift */; };
+		46CE2A061EAB3E98006AAF58 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CE2A051EAB3E98006AAF58 /* HamburgerViewController.swift */; };
+		46CE2A081EAB4B3A006AAF58 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CE2A071EAB4B3A006AAF58 /* MenuViewController.swift */; };
+		46CE2A0A1EAB4F16006AAF58 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CE2A091EAB4F16006AAF58 /* MenuCell.swift */; };
 		46E8E6A31EA1FAC600150F81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E8E6A21EA1FAC600150F81 /* AppDelegate.swift */; };
 		46E8E6A81EA1FAC600150F81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46E8E6A61EA1FAC600150F81 /* Main.storyboard */; };
 		46E8E6AA1EA1FAC600150F81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46E8E6A91EA1FAC600150F81 /* Assets.xcassets */; };
@@ -26,6 +29,9 @@
 /* Begin PBXFileReference section */
 		1E8FC795C58697506D7C9F7E /* Pods-Swift Talker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift Talker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift Talker/Pods-Swift Talker.debug.xcconfig"; sourceTree = "<group>"; };
 		46BEC5E11EA480EC00B6C74A /* TweetDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailsViewController.swift; sourceTree = "<group>"; };
+		46CE2A051EAB3E98006AAF58 /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
+		46CE2A071EAB4B3A006AAF58 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		46CE2A091EAB4F16006AAF58 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		46E8E69F1EA1FAC600150F81 /* Swift Talker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift Talker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E8E6A21EA1FAC600150F81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46E8E6A71EA1FAC600150F81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +113,8 @@
 				46E8E6BF1EA3677900150F81 /* TweetsViewController.swift */,
 				46E8E6C91EA46FC900150F81 /* ComposeTweetViewController.swift */,
 				46BEC5E11EA480EC00B6C74A /* TweetDetailsViewController.swift */,
+				46CE2A051EAB3E98006AAF58 /* HamburgerViewController.swift */,
+				46CE2A071EAB4B3A006AAF58 /* MenuViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				46E8E6C61EA454E300150F81 /* TweetCell.swift */,
+				46CE2A091EAB4F16006AAF58 /* MenuCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -283,8 +292,11 @@
 				46E8E6C71EA454E300150F81 /* TweetCell.swift in Sources */,
 				46E8E6B61EA1FD9B00150F81 /* LoginViewController.swift in Sources */,
 				46E8E6C01EA3677900150F81 /* TweetsViewController.swift in Sources */,
+				46CE2A081EAB4B3A006AAF58 /* MenuViewController.swift in Sources */,
 				46E8E6BE1EA344B200150F81 /* TwitterClient.swift in Sources */,
 				46E8E6C31EA43FBF00150F81 /* NotificationExtension.swift in Sources */,
+				46CE2A061EAB3E98006AAF58 /* HamburgerViewController.swift in Sources */,
+				46CE2A0A1EAB4F16006AAF58 /* MenuCell.swift in Sources */,
 				46E8E6A31EA1FAC600150F81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
