@@ -1,4 +1,4 @@
-# Project 3 - *Swift Talker*
+# Project 4 - *Swift Talker 2*
 
 **Swift Talker** is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
 
