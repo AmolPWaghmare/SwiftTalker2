@@ -13,10 +13,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     
     var hamburgerViewController : HamburgerViewController!
-    
     var tweetsViewController : UIViewController!
+    var viewControllersList : [UIViewController] = []
     
     var menuItems: [String] = ["Profile", "Timeline", "Mentions", "Accounts"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +26,15 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        tweetsViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+        
+        let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController")
+        viewControllersList.append(profileViewController)
+        let timelineViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+        viewControllersList.append(timelineViewController)
+        let mentionsViewController = storyboard.instantiateViewController(withIdentifier: "MentionsNavigationController")
+        viewControllersList.append(mentionsViewController)
+        let accountsViewController = storyboard.instantiateViewController(withIdentifier: "AccountsNavigationController")
+        viewControllersList.append(accountsViewController)
         
         // Do any additional setup after loading the view.
     }
@@ -49,7 +58,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        hamburgerViewController.contentViewController = tweetsViewController
+        hamburgerViewController.contentViewController = viewControllersList[indexPath.row]
         
     }
     

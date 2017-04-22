@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //Set Navigation Bar
+        UINavigationBar.appearance().barTintColor = UIColor(red: 0.0, green: 166.0/255.0, blue: 164.0/255.0, alpha: 1.0)
         
         if User.currentUser != nil {
             print("Already a user")
