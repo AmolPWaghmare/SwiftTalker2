@@ -15,6 +15,7 @@
 		46CE2A0C1EABFA05006AAF58 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CE2A0B1EABFA05006AAF58 /* ProfileViewController.swift */; };
 		46CE2A0E1EABFBB7006AAF58 /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CE2A0D1EABFBB7006AAF58 /* MentionsViewController.swift */; };
 		46CE2A101EABFC0F006AAF58 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CE2A0F1EABFC0F006AAF58 /* AccountsViewController.swift */; };
+		46CE2A121EAD3A0B006AAF58 /* TweetProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CE2A111EAD3A0B006AAF58 /* TweetProfileCell.swift */; };
 		46E8E6A31EA1FAC600150F81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E8E6A21EA1FAC600150F81 /* AppDelegate.swift */; };
 		46E8E6A81EA1FAC600150F81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46E8E6A61EA1FAC600150F81 /* Main.storyboard */; };
 		46E8E6AA1EA1FAC600150F81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46E8E6A91EA1FAC600150F81 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		46CE2A0B1EABFA05006AAF58 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		46CE2A0D1EABFBB7006AAF58 /* MentionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
 		46CE2A0F1EABFC0F006AAF58 /* AccountsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
+		46CE2A111EAD3A0B006AAF58 /* TweetProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetProfileCell.swift; sourceTree = "<group>"; };
 		46E8E69F1EA1FAC600150F81 /* Swift Talker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift Talker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E8E6A21EA1FAC600150F81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46E8E6A71EA1FAC600150F81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				46E8E6C61EA454E300150F81 /* TweetCell.swift */,
 				46CE2A091EAB4F16006AAF58 /* MenuCell.swift */,
+				46CE2A111EAD3A0B006AAF58 /* TweetProfileCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				46E8E6BE1EA344B200150F81 /* TwitterClient.swift in Sources */,
 				46E8E6C31EA43FBF00150F81 /* NotificationExtension.swift in Sources */,
 				46CE2A061EAB3E98006AAF58 /* HamburgerViewController.swift in Sources */,
+				46CE2A121EAD3A0B006AAF58 /* TweetProfileCell.swift in Sources */,
 				46CE2A0A1EAB4F16006AAF58 /* MenuCell.swift in Sources */,
 				46E8E6A31EA1FAC600150F81 /* AppDelegate.swift in Sources */,
 			);

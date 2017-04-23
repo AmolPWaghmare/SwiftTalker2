@@ -1,19 +1,26 @@
 //
-//  TweetCell.swift
+//  TweetProfileCell.swift
 //  Swift Talker
 //
-//  Created by Waghmare, Amol on 16/04/17.
+//  Created by Waghmare, Amol on 23/04/17.
 //  Copyright © 2017 Waghmare, Amol. All rights reserved.
 //
 
 import UIKit
 
-class TweetCell: UITableViewCell {
-
+class TweetProfileCell: UITableViewCell {
+    
+//    @IBOutlet weak var userScreenName: UILabel!
+//    @IBOutlet weak var userName: UILabel!
+//    @IBOutlet weak var userImage: UIImageView!
+//    @IBOutlet weak var timeText: UILabel!
+//    @IBOutlet weak var tweetText: UILabel!
+    
+    
     @IBOutlet weak var userScreenName: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var timeText: UILabel!
+    @IBOutlet weak var timeTweet: UILabel!
     @IBOutlet weak var tweetText: UILabel!
     
     var tweet : Tweet! {
@@ -28,10 +35,11 @@ class TweetCell: UITableViewCell {
             userName.text = tweetBy?.name
             
             tweetText.text = tweet.text
-            timeText.text = tweet.timestampStr
+            timeTweet.text = tweet.timestampStr
         }
     }
-    
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
         userImage.layer.cornerRadius = 3
