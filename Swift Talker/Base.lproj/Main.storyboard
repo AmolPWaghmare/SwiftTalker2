@@ -466,6 +466,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="9gP-eG-eb0">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="mxN-0u-mSD">
+                            <connections>
+                                <action selector="onBack:" destination="3oj-3x-YlL" id="Zfj-zv-6K6"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="iconmonstr-twitter-1-32" id="put-bU-nK5">
                             <connections>
                                 <segue destination="Z6z-NY-iPu" kind="presentation" identifier="ComposeTweetSegue" id="SjX-Nq-Qu5"/>

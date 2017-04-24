@@ -8,15 +8,15 @@ Time spent: **15** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] Hamburger menu
-- [ ] Dragging anywhere in the view should reveal the menu.
-- [ ] The menu should include links to your profile, the home timeline, and the mentions view.
-- [ ] The menu can look similar to the example or feel free to take liberty with the UI.
-- [ ] Profile page
-- [ ] Contains the user header view
-- [ ] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline
-- [ ] Tapping on a user image should bring up that user's profile page
+- [x] Hamburger menu
+- [x] Dragging anywhere in the view should reveal the menu.
+- [x] The menu should include links to your profile, the home timeline, and the mentions view.
+- [x] The menu can look similar to the example or feel free to take liberty with the UI.
+- [x] Profile page
+- [x] Contains the user header view
+- [x] Contains a section with the users basic stats: # tweets, # following, # followers
+- [x] Home Timeline
+- [x] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 
@@ -43,9 +43,9 @@ Please list two areas of the assignment you'd like to **discuss further with you
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-Link for gif: https://gifyu.com/images/SwiftTalkerd7839.gif
+Link for gif: https://gifyu.com/images/SwiftTalker2.gif
 
-<img src='https://gifyu.com/images/SwiftTalkerd7839.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://gifyu.com/images/SwiftTalker2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

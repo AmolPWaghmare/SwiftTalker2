@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController{
             
             tweetsCount.text = String(user.statuses_count ?? 0)
             followers_count.text = String(user.followers_count ?? 0)
-            following_count.text = String(user.followers_count ?? 0)
+            following_count.text = String(user.following_count ?? 0)
         }
     }
     
@@ -100,6 +100,9 @@ class ProfileViewController: UIViewController{
         
     }
 
+    @IBAction func onBack(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 
     @IBAction func onLogout(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
