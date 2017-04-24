@@ -21,7 +21,10 @@ class ProfileViewController: UIViewController{
     @IBOutlet weak var following_count: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+    let refreshTweetsControl = UIRefreshControl()
+    @IBOutlet weak var backButton: UIBarButtonItem!
     
+    var fromHamburger : Bool = true
     var user : User!
     
     func setUserProps(user: User) {
@@ -34,6 +37,16 @@ class ProfileViewController: UIViewController{
             tweetsCount.text = String(user.statuses_count ?? 0)
             followers_count.text = String(user.followers_count ?? 0)
             following_count.text = String(user.following_count ?? 0)
+            
+            if (!fromHamburger) {
+                backButton.style =  UIBarButtonItemStyle.done
+                backButton.isEnabled = true;
+                backButton.title = "Back";
+            } else {
+                backButton.style = UIBarButtonItemStyle.plain
+                backButton.isEnabled = false;
+                backButton.title = nil;
+            }
         }
     }
     
@@ -51,6 +64,10 @@ class ProfileViewController: UIViewController{
         setUserProps(user: user)
         
         getTweets(getMore: false)
+        
+        //Refresh Control
+        refreshTweetsControl.addTarget(self, action: #selector(ProfileViewController.getTweets), for: .valueChanged)
+        tableView.insertSubview(refreshTweetsControl, at: 0)
     }
     
     func getMoreTweets() {
@@ -72,14 +89,13 @@ class ProfileViewController: UIViewController{
                                                         print("Tweet Count: \(tweets.count )")
                                                         
                                                         self.tableView.reloadData()
-                                                        //self.refreshTweetsControl.endRefreshing()
+                                                        self.refreshTweetsControl.endRefreshing()
                                                         
         }, failure: { (error: Error!) in
             print("error \(error.localizedDescription)")
         })
         
     }
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

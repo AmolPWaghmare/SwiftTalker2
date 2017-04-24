@@ -478,6 +478,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="mxN-0u-mSD" id="HhR-zf-ULM"/>
                         <outlet property="backgroudImage" destination="lLH-Ka-3UI" id="Ffb-OH-Z9r"/>
                         <outlet property="followers_count" destination="xgu-64-MnW" id="KR2-Bi-vOa"/>
                         <outlet property="following_count" destination="pOU-0M-pOj" id="p9L-a6-GYU"/>
@@ -872,7 +873,34 @@
                     <view key="view" contentMode="scaleToFill" id="tqp-4f-IPe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="92" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t5o-9i-A5v">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.0" green="0.65098039220000004" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GenericTweetCell" rowHeight="92" id="KxA-JH-I63">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="92"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KxA-JH-I63" id="zfq-U9-MeL">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="91.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="I7z-i0-3xX" kind="show" identifier="showDetailsSegue" id="HKT-zR-owu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="t5o-9i-A5v" firstAttribute="leading" secondItem="tqp-4f-IPe" secondAttribute="leading" id="FL8-1P-fBt"/>
+                            <constraint firstItem="3pC-j1-6qj" firstAttribute="top" secondItem="t5o-9i-A5v" secondAttribute="bottom" id="Moo-xp-3Wt"/>
+                            <constraint firstAttribute="trailing" secondItem="t5o-9i-A5v" secondAttribute="trailing" id="O6y-Kx-bBL"/>
+                            <constraint firstItem="t5o-9i-A5v" firstAttribute="top" secondItem="tqp-4f-IPe" secondAttribute="top" id="pC1-Mb-8op"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Mentions" id="DnI-g2-EaR">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="lwS-R6-kpZ">
@@ -886,6 +914,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="t5o-9i-A5v" id="D3h-fv-ysv"/>
+                        <segue destination="use-Sk-ayd" kind="show" identifier="profileDetailsSegue" action="showDetailViewController:sender:" id="bG4-ed-A2E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AI5-i4-ikC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -985,8 +1017,9 @@
         <image name="iconmonstr-undo-5-24" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3DK-4n-IQS"/>
-        <segue reference="SjX-Nq-Qu5"/>
+        <segue reference="bG4-ed-A2E"/>
+        <segue reference="5ou-Hk-ZEj"/>
+        <segue reference="HKT-zR-owu"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

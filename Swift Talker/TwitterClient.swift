@@ -23,7 +23,7 @@ let TWITTER_HOME_TIMELINE = "1.1/statuses/home_timeline.json"
 let TWITTER_TWEET = "1.1/statuses/update.json"
 let TWITTER_USER_TIMELINE = "1.1/statuses/user_timeline.json"
 let TWITTER_OTHER_USER_INFO = "1.1/users/show.json"
-
+let TWITTER_MENTIONS_TIMELINE = "1.1/statuses/mentions_timeline.json"
 
 class TwitterClient: BDBOAuth1SessionManager {
     
@@ -125,6 +125,21 @@ class TwitterClient: BDBOAuth1SessionManager {
     func getUserTimeline (parameters: [String: AnyObject]?, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
         
         get(TWITTER_USER_TIMELINE, parameters: parameters, progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) in
+                let tweetsDict = response as! [NSDictionary]
+                let tweets = Tweet.tweetsFromArray(dictionaries: tweetsDict)
+                
+                success(tweets)
+                
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        }
+        )
+    }
+    
+    func getMentionsTimeline (parameters: [String: AnyObject]?, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+        
+        get(TWITTER_MENTIONS_TIMELINE, parameters: parameters, progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetsDict = response as! [NSDictionary]
                 let tweets = Tweet.tweetsFromArray(dictionaries: tweetsDict)

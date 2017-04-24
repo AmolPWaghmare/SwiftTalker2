@@ -49,9 +49,6 @@ class TweetsViewController: UIViewController{
                 self.tweets += tweets
                 
                 print("Tweet Count: \(tweets.count )")
-//                for tweet in tweets {
-//                    print("Tweet : \(tweet.text ?? "")")
-//                }
                 
                 self.tableView.reloadData()
                 self.refreshTweetsControl.endRefreshing()
@@ -62,10 +59,6 @@ class TweetsViewController: UIViewController{
         
     }
 
-    @IBAction func onImageTap(_ sender: UITapGestureRecognizer) {
-        
-        print("image")
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -92,6 +85,7 @@ class TweetsViewController: UIViewController{
             let user = sender as! User
             let profileViewController = uiNavigationController.topViewController as! ProfileViewController
             profileViewController.user = user
+            profileViewController.fromHamburger = false
         }
         
     }
