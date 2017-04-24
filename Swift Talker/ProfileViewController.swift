@@ -22,6 +22,21 @@ class ProfileViewController: UIViewController{
     
     @IBOutlet weak var tableView: UITableView!
     
+    var user : User!
+    
+    func setUserProps(user: User) {
+        if (backgroudImage != nil) {
+            backgroudImage.setImageWith((user.backgroundURL)!)
+            profileImage.setImageWith((user.profileURL)!)
+            nameLabel.text = user.name
+            screenNameLabel.text = "@" + (user.screenName)!
+            
+            tweetsCount.text = String(user.statuses_count ?? 0)
+            followers_count.text = String(user.followers_count ?? 0)
+            following_count.text = String(user.followers_count ?? 0)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,16 +44,11 @@ class ProfileViewController: UIViewController{
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 240
-        
-        backgroudImage.setImageWith((User.currentUser?.backgroundURL)!)
-        profileImage.setImageWith((User.currentUser?.profileURL)!)
-        nameLabel.text = User.currentUser?.name
-        screenNameLabel.text = "@" + (User.currentUser?.screenName)!
-        
-        tweetsCount.text = String(User.currentUser?.statuses_count ?? 0)
-        followers_count.text = String(User.currentUser?.followers_count ?? 0)
-        following_count.text = String(User.currentUser?.followers_count ?? 0)
 
+        if (user == nil) {
+            user = User.currentUser
+        }
+        setUserProps(user: user)
         
         getTweets(getMore: false)
     }
@@ -51,19 +61,15 @@ class ProfileViewController: UIViewController{
         
         var queryParams = [String: AnyObject]()
         queryParams["count"] = 20 as AnyObject
-        //queryParams["user_id"] = User.currentUser?.screenName as AnyObject
-        queryParams["screen_name"] = User.currentUser?.screenName as AnyObject
+        queryParams["user_id"] = user?.id_str as AnyObject
+        queryParams["screen_name"] = user?.screenName as AnyObject
 
-            
         TwitterClient.sharedInstance?.getUserTimeline(parameters:queryParams,
                                                       success: { (tweets : [Tweet]) in
                                                         
                                                         self.tweets += tweets
                                                         
                                                         print("Tweet Count: \(tweets.count )")
-                                                        //                for tweet in tweets {
-                                                        //                    print("Tweet : \(tweet.text ?? "")")
-                                                        //                }
                                                         
                                                         self.tableView.reloadData()
                                                         //self.refreshTweetsControl.endRefreshing()

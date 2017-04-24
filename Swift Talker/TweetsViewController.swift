@@ -62,6 +62,10 @@ class TweetsViewController: UIViewController{
         
     }
 
+    @IBAction func onImageTap(_ sender: UITapGestureRecognizer) {
+        
+        print("image")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -83,6 +87,12 @@ class TweetsViewController: UIViewController{
             let composeTweetController = uiNavigationController.topViewController as! ComposeTweetViewController
             composeTweetController.delegate = self
         }
+        else if segue.identifier == "profileDetailsSegue" { 
+            print("profileDetailsSegue")
+            let user = sender as! User
+            let profileViewController = uiNavigationController.topViewController as! ProfileViewController
+            profileViewController.user = user
+        }
         
     }
 }
@@ -97,7 +107,15 @@ extension TweetsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
         cell.tweet = tweets[indexPath.row]
+        cell.delegate = self
         return cell
+    }
+}
+
+//Extension for Tweet View functions
+extension TweetsViewController: TweetCellDelegate {
+    func tweetCell(tweetCell: TweetCell, selectImageInCell user: User) {
+        self.performSegue(withIdentifier: "profileDetailsSegue", sender: user)
     }
 }
 

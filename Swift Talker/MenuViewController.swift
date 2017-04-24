@@ -59,7 +59,6 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.deselectRow(at: indexPath, animated: true)
         
         hamburgerViewController.contentViewController = viewControllersList[indexPath.row]
-        
     }
     
 

@@ -58,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3559" y="630"/>
+            <point key="canvasLocation" x="-2602" y="628"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="TEp-C7-7vr">
@@ -91,12 +91,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Daq-5Y-Q5m">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Daq-5Y-Q5m">
                                                     <rect key="frame" x="10" y="10" width="65" height="65"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="65" id="mvt-9X-GmO"/>
                                                         <constraint firstAttribute="width" constant="65" id="wof-AE-OaE"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="sSK-gW-2TA" appends="YES" id="l0b-Pn-yO8"/>
+                                                    </connections>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewb-Gv-hP5">
                                                     <rect key="frame" x="85" y="10" width="38" height="17"/>
@@ -169,6 +173,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F99-1G-Vqj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="sSK-gW-2TA">
+                    <connections>
+                        <segue destination="use-Sk-ayd" kind="show" identifier="profileDetailsSegue" id="Fwx-Xa-loZ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1968.8" y="142.57871064467767"/>
         </scene>
@@ -457,11 +466,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="9gP-eG-eb0">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="L8n-2A-fDO">
-                            <connections>
-                                <action selector="onLogout:" destination="3oj-3x-YlL" id="aur-k4-0Lj"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="iconmonstr-twitter-1-32" id="put-bU-nK5">
                             <connections>
                                 <segue destination="Z6z-NY-iPu" kind="presentation" identifier="ComposeTweetSegue" id="SjX-Nq-Qu5"/>
@@ -787,7 +791,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LoH-Ml-a7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2017" y="629"/>
+            <point key="canvasLocation" x="-1706" y="628"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="PU0-1E-iZq">
@@ -977,7 +981,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="3DK-4n-IQS"/>
-        <segue reference="aGr-Yj-PfM"/>
+        <segue reference="SjX-Nq-Qu5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

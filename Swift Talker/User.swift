@@ -32,7 +32,7 @@ class User: NSObject {
         screenName = dictionary["screen_name"] as? String
         statuses_count = (dictionary["statuses_count"] as? Int) ?? 0
         followers_count = (dictionary["followers_count"] as? Int) ?? 0
-        following_count = (dictionary["favourites_count"] as? Int) ?? 0
+        following_count = (dictionary["friends_count"] as? Int) ?? 0
         
         
         let profileURLString = dictionary["profile_image_url_https"] as? String

@@ -22,6 +22,7 @@ let TWITTER_USER_INFO = "1.1/account/verify_credentials.json"
 let TWITTER_HOME_TIMELINE = "1.1/statuses/home_timeline.json"
 let TWITTER_TWEET = "1.1/statuses/update.json"
 let TWITTER_USER_TIMELINE = "1.1/statuses/user_timeline.json"
+let TWITTER_OTHER_USER_INFO = "1.1/users/show.json"
 
 
 class TwitterClient: BDBOAuth1SessionManager {
@@ -89,7 +90,21 @@ class TwitterClient: BDBOAuth1SessionManager {
             }, failure: { (task: URLSessionDataTask?, error: Error) in
                 failure(error)
             })
-
+    }
+    
+    func getOtherUserInfo (parameters: [String: AnyObject]?, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+        
+        get(TWITTER_OTHER_USER_INFO, parameters: parameters, progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) in
+                
+                let userDict = response as! NSDictionary
+                let user = User(dictionary: userDict)
+                success(user)
+                
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+        
     }
     
     func getHomeTimeline (parameters: [String: AnyObject]?, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
